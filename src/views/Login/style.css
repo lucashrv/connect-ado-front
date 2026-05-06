@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  background-color: #f0f2f5;
+  font-family: 'Public Sans', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 15px;
+  min-height: calc(100vh - 80px);
+}
+
+.signup {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.3s ease;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px !important;
+  color: #111;
+  font-weight: 700 !important;
+}
+
+.joy-Input-root, .joy-Select-root {
+  --Input-minHeight: 44px;
+  --Select-minHeight: 44px;
+  border-radius: 8px;
+}
+
+.joy-Input-root.joy-focused, .joy-Select-root.joy-focused {
+  --Input-focusedThickness: 2px;
+  --Input-focusedHighlight: #de318d; 
+}
+
+
+.btn-submit {
+  background: linear-gradient(90deg, #de318d 0%, #4a90e2 100%) !important;
+  color: white !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  transition: opacity 0.3s, transform 0.2s !important;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.forgot-password {
+  font-size: 0.85rem;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #de318d;
+  text-decoration: underline;
+}
+
+.link-highlight {
+  color: #de318d;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-highlight:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+  .signup {
+    padding: 24px 16px;
+  }
+}
