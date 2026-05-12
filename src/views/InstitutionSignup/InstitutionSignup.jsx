@@ -11,6 +11,7 @@ import {
 } from "@mui/joy";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import { maskCNPJ, maskPhone, onlyNumbers } from "../../utils/masks";
 
 export default function InstitutionSignup() {
   const [state, setState] = useState({
@@ -36,12 +37,22 @@ export default function InstitutionSignup() {
     }));
   };
 
+  const handleCNPJChange = (e) => {
+    const rawValue = onlyNumbers(e.target.value).slice(0, 14);
+    updateState("cnpj", rawValue);
+  };
+
+  const handlePhoneChange = (e) => {
+    const rawValue = onlyNumbers(e.target.value).slice(0, 11);
+    updateState("phone", rawValue);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const response = await api.post("/institution/signup", { ...state });
+      const response = await api.post("/institution/signup", state);
       console.log("Cadastro realizado:", response.data);
       alert("Instituição cadastrada com sucesso!");
       navigate("/institution");
@@ -106,8 +117,9 @@ export default function InstitutionSignup() {
                   <FormLabel>CNPJ</FormLabel>
                   <Input
                     placeholder="00.000.000/0000-00"
-                    value={state.cnpj}
-                    onChange={(e) => updateState("cnpj", e.target.value)}
+                    value={maskCNPJ(state.cnpj)}
+                    onChange={handleCNPJChange}
+                    slotProps={{ input: { maxLength: 18 } }}
                   />
                 </FormControl>
               </Grid>
@@ -116,8 +128,9 @@ export default function InstitutionSignup() {
                   <FormLabel>Telefone</FormLabel>
                   <Input
                     placeholder="(00) 00000-0000"
-                    value={state.phone}
-                    onChange={(e) => updateState("phone", e.target.value)}
+                    value={maskPhone(state.phone)}
+                    onChange={handlePhoneChange}
+                    slotProps={{ input: { maxLength: 15 } }}
                   />
                 </FormControl>
               </Grid>

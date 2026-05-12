@@ -13,6 +13,7 @@ import {
   Select,
   Option,
 } from "@mui/joy";
+import { maskCPF, maskPhone, onlyNumbers } from "../../utils/masks";
 
 export default function AdopterSignup() {
   const navigate = useNavigate();
@@ -37,10 +38,21 @@ export default function AdopterSignup() {
     }));
   };
 
+  const handlePhoneChange = (e) => {
+    const rawValue = onlyNumbers(e.target.value).slice(0, 11);
+    updateState("phone", rawValue);
+  };
+
+  const handleCPFChange = (e) => {
+    const rawValue = onlyNumbers(e.target.value).slice(0, 11);
+    updateState("cpf", rawValue);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+    console.log(state);
+    return;
     try {
       const response = await api.post("/adopter/signup", state);
       console.log("Cadastro realizado:", response.data);
@@ -104,8 +116,9 @@ export default function AdopterSignup() {
                   <FormLabel>CPF</FormLabel>
                   <Input
                     placeholder="000.000.000-00"
-                    value={state.cpf}
-                    onChange={(e) => updateState("cpf", e.target.value)}
+                    value={maskCPF(state.cpf)}
+                    onChange={handleCPFChange}
+                    slotProps={{ input: { maxLength: 14 } }}
                   />
                 </FormControl>
               </Grid>
@@ -114,8 +127,9 @@ export default function AdopterSignup() {
                   <FormLabel>Telefone</FormLabel>
                   <Input
                     placeholder="(00) 00000-0000"
-                    value={state.phone}
-                    onChange={(e) => updateState("phone", e.target.value)}
+                    value={maskPhone(state.phone)}
+                    onChange={handlePhoneChange}
+                    slotProps={{ input: { maxLength: 15 } }}
                   />
                 </FormControl>
               </Grid>
