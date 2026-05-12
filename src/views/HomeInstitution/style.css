@@ -1,0 +1,23 @@
+.home-container {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 40px;
+  min-height: 100vh;
+}
+
+.home-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-header {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-section-title {
+  margin-bottom: 12px;
+}

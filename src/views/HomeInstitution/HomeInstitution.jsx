@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Typography,
   Grid,
@@ -15,29 +16,28 @@ import {
   BookOpen,
   Stethoscope,
 } from "lucide-react";
+import "./style.css";
+import { ChildSignupModal } from "./modal/ChildSignupModal";
 
 export default function HomeInstitution() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div
-      className="container"
-      style={{ alignItems: "flex-start", paddingTop: "40px" }}
-    >
-      <div style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
-        <header
-          style={{
-            marginBottom: "32px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+    <div className="home-container">
+      <div className="home-content">
+        <header className="home-header">
           <div>
             <Typography level="h2">Painel da Instituição</Typography>
             <Typography level="body-lg">
               Gestão de acolhidos e processos de harmonização.
             </Typography>
           </div>
-          <Button startDecorator={<Plus />} size="lg" color="primary">
+          <Button
+            startDecorator={<Plus />}
+            size="lg"
+            color="primary"
+            onClick={() => setOpen(true)}
+          >
             Cadastrar Criança
           </Button>
         </header>
@@ -134,6 +134,7 @@ export default function HomeInstitution() {
                   </Button>
                 </CardContent>
               </Card>
+
               <Card variant="solid" color="primary" invertedColors>
                 <CardContent>
                   <Typography
@@ -153,6 +154,8 @@ export default function HomeInstitution() {
             </Stack>
           </Grid>
         </Grid>
+
+        <ChildSignupModal open={open} setOpen={setOpen} />
       </div>
     </div>
   );
