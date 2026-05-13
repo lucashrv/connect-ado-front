@@ -8,12 +8,14 @@ import { PrivateRoute } from "./PrivateRoute";
 import InstitutionSignup from "../views/InstitutionSignup/InstitutionSignup";
 import AdopterSignup from "../views/AdopterSignup/AdopterSignup";
 import Login from "../views/Login/Login";
+import Home from "../views/Home/Home";
 
 //Private Routes
 
 import HomeAdopter from "../views/HomeAdopter/HomeAdopter";
 import HomeInstitution from "../views/HomeInstitution/HomeInstitution";
 import HomeChild from "../views/HomeChild/HomeChild";
+import { Footer } from "../components/Footer/Footer";
 
 function IndexRoutes() {
   return (
@@ -45,6 +47,7 @@ function IndexRoutes() {
             </ConnectRedirect>
           }
         />
+        <Route path="/" element={<Home />} />
 
         {/* //Private Routes 'Roles'*/}
         <Route element={<PrivateRoute allowedRoles={["ADOPTER"]} />}>
@@ -57,6 +60,8 @@ function IndexRoutes() {
           <Route path="/child" element={<HomeChild />} />
         </Route>
       </Routes>
+
+      <Footer />
     </Router>
   );
 }
