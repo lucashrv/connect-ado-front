@@ -13,7 +13,6 @@ import {
   Heart,
   Gamepad2,
   Camera,
-  Smile,
 } from "lucide-react";
 
 export default function HomeChild() {
@@ -26,21 +25,9 @@ export default function HomeChild() {
               level="h2"
               startDecorator={<Sparkles color="#FFD700" />}
             >
-              Olá, João!
-            </Typography>
-            <Typography level="body-lg">
-              Sua jornada para um novo lar está cheia de novidades.
+              Olá, sua jornada para um novo lar está cheia de novidades.
             </Typography>
           </div>
-          <Button
-            startDecorator={<Smile />}
-            size="lg"
-            variant="soft"
-            color="success"
-            sx={{ borderRadius: "xl" }}
-          >
-            Como estou hoje?
-          </Button>
         </header>
 
         <Stack
@@ -97,7 +84,7 @@ export default function HomeChild() {
                 </Typography>
                 <Typography level="body-md">
                   Veja fotos da casa, do seu futuro quarto e conheça os pets da
-                  Família Silva!
+                  Família!
                 </Typography>
                 <Button
                   variant="solid"
@@ -105,7 +92,7 @@ export default function HomeChild() {
                   endDecorator="→"
                   sx={{ mt: 2, borderRadius: "md" }}
                 >
-                  Abrir Álbum
+                  Abrir Postagens
                 </Button>
               </CardContent>
             </Card>
@@ -136,10 +123,10 @@ export default function HomeChild() {
               </AspectRatio>
               <CardContent sx={{ p: 3 }}>
                 <Typography level="title-lg" sx={{ fontSize: "1.5rem" }}>
-                  Meu Diário Mágico
+                  Diário de Mim Mesmo
                 </Typography>
                 <Typography level="body-md">
-                  Conte para sua nova família quais são suas brincadeiras e
+                  Conte para sua nova família quais são suas atividades e
                   comidas favoritas.
                 </Typography>
                 <Button
@@ -175,7 +162,7 @@ export default function HomeChild() {
                   Minha Rotina
                 </Typography>
                 <Typography level="body-xs">
-                  Entenda como vai ser o seu dia a dia e os horários de brincar.
+                  Entenda como vai ser o seu dia a dia e seus horários.
                 </Typography>
               </CardContent>
             </Card>
@@ -188,8 +175,7 @@ export default function HomeChild() {
                   Mensagens
                 </Typography>
                 <Typography level="body-xs">
-                  Leia os recadinhos carinhosos enviados pela instituição e
-                  família.
+                  Leia os recados enviados pela instituição e família.
                 </Typography>
               </CardContent>
             </Card>
