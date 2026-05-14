@@ -8,8 +8,9 @@ import {
   Stack,
   Typography,
   Grid,
+  Divider,
 } from "@mui/joy";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { maskCNPJ, maskPhone, onlyNumbers } from "../../utils/masks";
 
@@ -207,6 +208,13 @@ export default function InstitutionSignup() {
             >
               Criar conta
             </Button>
+
+            <Divider sx={{ my: 1 }}>Já possui conta?</Divider>
+            <Typography level="body-sm" sx={{ textAlign: "center" }}>
+              <Link to="/login" className="link-highlight">
+                Entrar
+              </Link>
+            </Typography>
           </Stack>
         </form>
       </div>

@@ -100,11 +100,14 @@ export default function Login() {
             </Button>
 
             <Divider sx={{ my: 1 }}>ou</Divider>
-
             <Typography level="body-sm" sx={{ textAlign: "center" }}>
-              Ainda não tem uma conta?{" "}
-              <Link to="/signup" className="link-highlight">
-                Criar conta gratuita
+              <Link to="/adopter-signup" className="link-highlight">
+                Criar conta de adotante
+              </Link>
+            </Typography>
+            <Typography level="body-sm" sx={{ textAlign: "center" }}>
+              <Link to="/institution-signup" className="link-highlight">
+                Criar conta de instituição
               </Link>
             </Typography>
           </Stack>

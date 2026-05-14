@@ -48,7 +48,14 @@ function IndexRoutes() {
             </ConnectRedirect>
           }
         />
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <ConnectRedirect>
+              <Home />
+            </ConnectRedirect>
+          }
+        />
 
         {/* //Private Routes 'Roles'*/}
         <Route element={<PrivateRoute allowedRoles={["ADOPTER"]} />}>

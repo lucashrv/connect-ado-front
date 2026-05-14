@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "./style.css";
 import {
@@ -12,6 +12,7 @@ import {
   Grid,
   Select,
   Option,
+  Divider,
 } from "@mui/joy";
 import { maskCPF, maskPhone, onlyNumbers } from "../../utils/masks";
 
@@ -188,6 +189,13 @@ export default function AdopterSignup() {
             >
               Criar conta
             </Button>
+
+            <Divider sx={{ my: 1 }}>Já possui conta?</Divider>
+            <Typography level="body-sm" sx={{ textAlign: "center" }}>
+              <Link to="/login" className="link-highlight">
+                Entrar
+              </Link>
+            </Typography>
           </Stack>
         </form>
       </div>

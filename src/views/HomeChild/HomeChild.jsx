@@ -14,8 +14,12 @@ import {
   Gamepad2,
   Camera,
 } from "lucide-react";
+import { useState } from "react";
+import { ChildPersonalManualModal } from "./modal/ChildPersonalManualModal";
 
 export default function HomeChild() {
+  const [openPersonalManualModal, setOpenPersonalManualModal] = useState(false);
+
   return (
     <div className="home-container">
       <div className="home-content">
@@ -134,6 +138,7 @@ export default function HomeChild() {
                   color="danger"
                   endDecorator="→"
                   sx={{ mt: 2, borderRadius: "md" }}
+                  onClick={() => setOpenPersonalManualModal(true)}
                 >
                   Escrever no Diário
                 </Button>
@@ -181,6 +186,13 @@ export default function HomeChild() {
             </Card>
           </Grid>
         </Grid>
+
+        {/* Modal */}
+        <ChildPersonalManualModal
+          open={openPersonalManualModal}
+          setOpen={setOpenPersonalManualModal}
+          childId={""}
+        />
       </div>
     </div>
   );
