@@ -13,7 +13,7 @@ import {
   Textarea,
   ModalOverflow,
 } from "@mui/joy";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../../services/api";
 
 export function ChildPersonalManualModal({ open, setOpen, childId }) {
@@ -30,6 +30,8 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
     notes: "",
   });
 
+  const [personalManual, setPersonalManual] = useState({});
+
   const updateState = (key, value) => {
     setState((prev) => ({
       ...prev,
@@ -37,22 +39,40 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
     }));
   };
 
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await api.get(
+          `/child/personal-manual/${childId()}`,
+        );
+
+        setState(prev => ({ ...prev, ...response.data.data }))
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (open) {
+      loadData();
+    }
+  }, [open]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
 
-    // try {
-    //   await api.post("/child/manual", { ...state, child_id: childId });
-    //   alert("Manual pessoal cadastrado com sucesso!");
-    //   setOpen(false);
-    // } catch (error) {
-    //   console.error("Erro no cadastro do manual:", error.response?.data);
-    //   const msg =
-    //     error.response?.data?.message || "Erro ao salvar informações.";
-    //   alert(msg);
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      await api.put(`/child/personal-manual/${childId()}`, { ...state, child_id: childId });
+      alert("Manual pessoal cadastrado com sucesso!");
+      setOpen(false);
+    } catch (error) {
+      console.error("Erro no cadastro do manual:", error.response?.data);
+      const msg =
+        error.response?.data?.message || "Erro ao salvar informações.";
+      alert(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

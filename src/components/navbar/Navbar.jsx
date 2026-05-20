@@ -54,36 +54,11 @@ const Navbar = () => {
 
       <div className={`nav-menu ${isOpen ? "active" : ""}`}>
         <ul className="nav-items">
-          <li>
+          {isLogged && <li>
             <Link to="/" onClick={closeMenu}>
               Início
             </Link>
-          </li>
-          <li>
-            <Link to="/comunidade" onClick={closeMenu}>
-              Comunidade
-            </Link>
-          </li>
-          <li>
-            <Link to="/contato" onClick={closeMenu}>
-              Contato
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog" onClick={closeMenu}>
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link to="/eventos" onClick={closeMenu}>
-              Eventos
-            </Link>
-          </li>
-          <li>
-            <Link to="/suporte" onClick={closeMenu}>
-              Suporte
-            </Link>
-          </li>
+          </li>}
         </ul>
 
         <div className="nav-auth">

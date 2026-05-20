@@ -16,9 +16,16 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { ChildPersonalManualModal } from "./modal/ChildPersonalManualModal";
+import { AdopterPostsModal } from "./modal/AdopterPosts";
 
 export default function HomeChild() {
   const [openPersonalManualModal, setOpenPersonalManualModal] = useState(false);
+  const [openAdopterPostsModal, setOpenAdopterPostsModal] = useState(false);
+
+  const getId = () => {
+    const user = JSON.parse(localStorage.getItem("user"))
+    return user.id
+  }
 
   return (
     <div className="home-container">
@@ -95,6 +102,7 @@ export default function HomeChild() {
                   color="primary"
                   endDecorator="→"
                   sx={{ mt: 2, borderRadius: "md" }}
+                  onClick={() => setOpenAdopterPostsModal(true)}
                 >
                   Abrir Postagens
                 </Button>
@@ -191,7 +199,11 @@ export default function HomeChild() {
         <ChildPersonalManualModal
           open={openPersonalManualModal}
           setOpen={setOpenPersonalManualModal}
-          childId={""}
+          childId={getId}
+        />
+        <AdopterPostsModal
+          open={openAdopterPostsModal}
+          setOpen={setOpenAdopterPostsModal}
         />
       </div>
     </div>
