@@ -43,6 +43,7 @@ export default function HomeInstitution() {
             startDecorator={<Plus />}
             size="lg"
             color="primary"
+            className="btn-submit"
             onClick={() => setOpenChildSignupModal(true)}
           >
             Cadastrar Criança

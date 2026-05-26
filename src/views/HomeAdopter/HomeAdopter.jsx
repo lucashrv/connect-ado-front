@@ -8,8 +8,11 @@ import {
   Stack,
 } from "@mui/joy";
 import { Camera, Heart, BookOpen, MessageSquare } from "lucide-react";
+import { AdopterPostsModal } from "./modal/AdopterPosts";
+import { useState } from "react";
 
 export default function HomeAdopter() {
+  const [openAdopterPostsModal, setOpenAdopterPostsModal] = useState(false);
   return (
     <div
       className="container"
@@ -20,9 +23,8 @@ export default function HomeAdopter() {
         style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       >
         <header style={{ marginBottom: "32px" }}>
-          <Typography level="h2">Olá, Família Silva!</Typography>
-          <Typography level="body-lg">
-            Sua ponte para uma nova história começa aqui.
+          <Typography level="h2">
+            Olá, Sua ponte para uma nova história começa aqui!
           </Typography>
         </header>
 
@@ -80,7 +82,12 @@ export default function HomeAdopter() {
                   Apresente a casa, os pets e a rotina da família para reduzir a
                   ansiedade da criança.
                 </Typography>
-                <Button variant="plain" endDecorator="→" sx={{ mt: 2, p: 0 }}>
+                <Button
+                  variant="plain"
+                  endDecorator="→"
+                  sx={{ mt: 2, p: 0 }}
+                  onClick={() => setOpenAdopterPostsModal(true)}
+                >
                   Atualizar Guia
                 </Button>
               </CardContent>
@@ -151,6 +158,10 @@ export default function HomeAdopter() {
           </Grid>
         </Grid>
       </div>
+      <AdopterPostsModal
+        open={openAdopterPostsModal}
+        setOpen={setOpenAdopterPostsModal}
+      />
     </div>
   );
 }

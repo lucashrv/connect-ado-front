@@ -32,7 +32,8 @@ export default function ChildAdopterList() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [childId, setChildId] = useState("");
-  const [openHealthEducationModal, setOpenHealthEducationModal] = useState(false);
+  const [openHealthEducationModal, setOpenHealthEducationModal] =
+    useState(false);
   const [childModal, setChildModal] = useState({});
 
   // Estados de Dados e Paginação
@@ -65,6 +66,7 @@ export default function ChildAdopterList() {
           },
           signal: abortControllerRef.current.signal,
         });
+        console.log(response);
 
         let newItems = response.data.data || [];
 
@@ -192,7 +194,9 @@ export default function ChildAdopterList() {
                             color={child.adopter_id ? "warning" : "neutral"}
                             size="sm"
                           >
-                            {child.adopter_id ? "Em Harmonização" : "Aguardando"}
+                            {child.adopter_id
+                              ? "Em Harmonização"
+                              : "Aguardando"}
                           </Chip>
                         </td>
                         <td style={{ textAlign: "right" }}>
@@ -207,9 +211,9 @@ export default function ChildAdopterList() {
                               color="neutral"
                               startDecorator={<Edit2 size={16} />}
                               onClick={() => {
-                                setChildId(child.id)
-                                setChildModal(child)
-                                setOpenHealthEducationModal(true)
+                                setChildId(child.id);
+                                setChildModal(child);
+                                setOpenHealthEducationModal(true);
                               }}
                             >
                               Editar
@@ -229,7 +233,9 @@ export default function ChildAdopterList() {
                   </tbody>
                 </Table>
                 {hasMore && !loading && (
-                  <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+                  >
                     <Button
                       variant="plain"
                       startDecorator={<Plus size={18} />}
@@ -265,7 +271,8 @@ export default function ChildAdopterList() {
                           </Typography>
                         </td>
                         <td>
-                          {adopter.childProfile[0].full_name ? (
+                          {adopter.childProfile[0] &&
+                          adopter.childProfile[0].full_name ? (
                             <Chip
                               variant="outlined"
                               color="primary"
@@ -310,7 +317,9 @@ export default function ChildAdopterList() {
                   </tbody>
                 </Table>
                 {hasMore && !loading && (
-                  <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+                  >
                     <Button
                       variant="plain"
                       startDecorator={<Plus size={18} />}
@@ -329,7 +338,8 @@ export default function ChildAdopterList() {
         open={openHealthEducationModal}
         setOpen={setOpenHealthEducationModal}
         childId={childId}
-        child={childModal} />
+        child={childModal}
+      />
     </>
   );
 }

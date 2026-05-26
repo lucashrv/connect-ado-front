@@ -23,9 +23,9 @@ export default function HomeChild() {
   const [openAdopterPostsModal, setOpenAdopterPostsModal] = useState(false);
 
   const getId = () => {
-    const user = JSON.parse(localStorage.getItem("user"))
-    return user.id
-  }
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user.id;
+  };
 
   return (
     <div className="home-container">
@@ -94,8 +94,8 @@ export default function HomeChild() {
                   Conheça sua Nova Família
                 </Typography>
                 <Typography level="body-md">
-                  Veja fotos da casa, do seu futuro quarto e conheça os pets da
-                  Família!
+                  Veja fotos da casa, do seu futuro quarto, conheça os pets da
+                  Família aqui!
                 </Typography>
                 <Button
                   variant="solid"

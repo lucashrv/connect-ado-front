@@ -30,8 +30,6 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
     notes: "",
   });
 
-  const [personalManual, setPersonalManual] = useState({});
-
   const updateState = (key, value) => {
     setState((prev) => ({
       ...prev,
@@ -42,11 +40,9 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await api.get(
-          `/child/personal-manual/${childId()}`,
-        );
+        const response = await api.get(`/child/personal-manual/${childId()}`);
 
-        setState(prev => ({ ...prev, ...response.data.data }))
+        setState((prev) => ({ ...prev, ...response.data.data }));
       } catch (error) {
         console.error(error);
       }
@@ -55,14 +51,17 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
     if (open) {
       loadData();
     }
-  }, [open]);
+  }, [open, childId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await api.put(`/child/personal-manual/${childId()}`, { ...state, child_id: childId });
+      await api.put(`/child/personal-manual/${childId()}`, {
+        ...state,
+        child_id: childId,
+      });
       alert("Manual pessoal cadastrado com sucesso!");
       setOpen(false);
     } catch (error) {
