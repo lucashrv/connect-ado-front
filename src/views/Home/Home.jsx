@@ -39,7 +39,7 @@ export default function LandingPage() {
         <Container maxWidth="md" sx={{ textAlign: "center" }}>
           <img
             src="/images/icon.png"
-            alt="connectAdo"
+            alt="ConnectAdo"
             style={{ height: "60px", marginBottom: "24px" }}
           />
 
@@ -66,7 +66,7 @@ export default function LandingPage() {
               mx: "auto",
             }}
           >
-            O <strong>connectAdo</strong> facilita a troca de informações e
+            O <strong>ConnectAdo</strong> facilita a troca de informações e
             rotinas entre instituições, adotantes and crianças, tornando o
             processo de adoção mais humano e transparente.
           </Typography>
@@ -291,7 +291,7 @@ export default function LandingPage() {
               sx={{ color: "text.secondary", maxW: "450px", mx: "auto", mb: 1 }}
             >
               Preparamos uma central completa com perguntas frequentes sobre o
-              connectAdo, o estágio de convivência e a transição do acolhido
+              ConnectAdo, o estágio de convivência e a transição do acolhido
               para o novo lar.
             </Typography>
             <Button
@@ -325,7 +325,7 @@ export default function LandingPage() {
           onClick={() => navigate("/login")}
           endDecorator={<ChevronRight />}
         >
-          Acessar o connectAdo
+          Acessar o ConnectAdo
         </Button>
       </Container>
     </Box>

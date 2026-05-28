@@ -8,7 +8,7 @@ export function Footer() {
     >
       <Container sx={{ textAlign: "center" }}>
         <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-          © 2026 connectAdo
+          © 2026 ConnectAdo
         </Typography>
       </Container>
     </Box>

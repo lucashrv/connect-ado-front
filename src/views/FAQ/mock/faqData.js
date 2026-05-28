@@ -1,17 +1,17 @@
 export const faqData = [
     {
         id: 1,
-        question: "O que é o sistema connectAdo e qual o seu objetivo principal?",
-        answer: "O connectAdo é uma plataforma digital desenvolvida para aproximar, monitorar e registrar a evolução do vínculo entre a família adotante e a criança acolhida. O objetivo principal é centralizar históricos de saúde, rotinas pedagógicas e momentos do cotidiano através de um mural de postagens seguro, facilitando o acompanhamento técnico pela instituição durante o estágio de convivência."
+        question: "O que é o sistema ConnectAdo e qual o seu objetivo principal?",
+        answer: "O ConnectAdo é uma plataforma digital desenvolvida para aproximar, monitorar e registrar a evolução do vínculo entre a família adotante e a criança acolhida. O objetivo principal é centralizar históricos de saúde, rotinas pedagógicas e momentos do cotidiano através de um mural de postagens seguro, facilitando o acompanhamento técnico pela instituição durante o estágio de convivência."
     },
     {
         id: 2,
-        question: "Como o connectAdo garante a segurança e privacidade dos dados da criança?",
-        answer: "A segurança é nossa prioridade absoluta. O connectAdo utiliza criptografia de ponta a ponta no armazenamento de mídias e relatórios. O acesso é estritamente controlado por perfis de autenticação: apenas a equipe técnica autorizada da instituição e os adotantes especificamente vinculados àquela criança possuem credenciais para visualizar e interagir com o mural e dados médicos."
+        question: "Como o ConnectAdo garante a segurança e privacidade dos dados da criança?",
+        answer: "A segurança é nossa prioridade absoluta. O ConnectAdo utiliza criptografia de ponta a ponta no armazenamento de mídias e relatórios. O acesso é estritamente controlado por perfis de autenticação: apenas a equipe técnica autorizada da instituição e os adotantes especificamente vinculados àquela criança possuem credenciais para visualizar e interagir com o mural e dados médicos."
     },
     {
         id: 3,
-        question: "Os registros feitos no connectAdo servem como relatório para o processo judicial?",
+        question: "Os registros feitos no ConnectAdo servem como relatório para o processo judicial?",
         answer: "Sim, os registros, fotos das atividades e históricos compilados na plataforma servem como um valioso diário de bordo digital. A equipe técnica da instituição pode exportar esses relatórios consolidados para subsidiar os pareceres psicossociais solicitados pelo Juizado da Infância e da Juventude na fase de sentença definitiva."
     },
     {

@@ -81,7 +81,7 @@ export function AdopterPostsModal({ open, setOpen }) {
             >
               <Box>
                 <Typography level="h3" component="h2">
-                  Mural de Postagens da Criança
+                  Mural de Postagens
                 </Typography>
                 <Typography level="body-sm">
                   Histórico de atividades, rotinas e momentos compartilhados.

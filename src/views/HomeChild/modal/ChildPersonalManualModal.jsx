@@ -40,7 +40,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await api.get(`/child/personal-manual/${childId()}`);
+        const response = await api.get(`/child/personal-manual/${childId}`);
 
         setState((prev) => ({ ...prev, ...response.data.data }));
       } catch (error) {
@@ -58,7 +58,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
     setLoading(true);
 
     try {
-      await api.put(`/child/personal-manual/${childId()}`, {
+      await api.put(`/child/personal-manual/${childId}`, {
         ...state,
         child_id: childId,
       });
@@ -98,7 +98,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                 <Textarea
                   minRows={2}
                   placeholder="Descreva os horários e atividades principais..."
-                  value={state.daily_routine}
+                  value={state.daily_routine || ""}
                   onChange={(e) => updateState("daily_routine", e.target.value)}
                 />
               </FormControl>
@@ -109,7 +109,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                     <FormLabel>Comida Favorita</FormLabel>
                     <Input
                       placeholder="Ex: Arroz, feijão e batata frita"
-                      value={state.favorite_food}
+                      value={state.favorite_food || ""}
                       onChange={(e) =>
                         updateState("favorite_food", e.target.value)
                       }
@@ -121,7 +121,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                     <FormLabel>Música Favorita</FormLabel>
                     <Input
                       placeholder="Gênero ou música específica"
-                      value={state.favorite_music}
+                      value={state.favorite_music || ""}
                       onChange={(e) =>
                         updateState("favorite_music", e.target.value)
                       }
@@ -136,7 +136,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                     <FormLabel>Atividade Favorita</FormLabel>
                     <Input
                       placeholder="Ex: Desenhar, jogar bola"
-                      value={state.favorite_activity}
+                      value={state.favorite_activity || ""}
                       onChange={(e) =>
                         updateState("favorite_activity", e.target.value)
                       }
@@ -148,7 +148,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                     <FormLabel>Hobbies</FormLabel>
                     <Input
                       placeholder="O que gosta de fazer no tempo livre"
-                      value={state.hobbies}
+                      value={state.hobbies || ""}
                       onChange={(e) => updateState("hobbies", e.target.value)}
                     />
                   </FormControl>
@@ -161,7 +161,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                     <FormLabel>Hábitos de Estudo</FormLabel>
                     <Input
                       placeholder="Como prefere estudar?"
-                      value={state.study_habits}
+                      value={state.study_habits || ""}
                       onChange={(e) =>
                         updateState("study_habits", e.target.value)
                       }
@@ -173,7 +173,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                     <FormLabel>Medos</FormLabel>
                     <Input
                       placeholder="Ex: Escuro, trovoadas"
-                      value={state.fears}
+                      value={state.fears || ""}
                       onChange={(e) => updateState("fears", e.target.value)}
                     />
                   </FormControl>
@@ -185,7 +185,7 @@ export function ChildPersonalManualModal({ open, setOpen, childId }) {
                 <Textarea
                   minRows={3}
                   placeholder="Alguma informação importante que não foi mencionada?"
-                  value={state.notes}
+                  value={state.notes || ""}
                   onChange={(e) => updateState("notes", e.target.value)}
                 />
               </FormControl>

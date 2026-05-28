@@ -9,141 +9,142 @@ import {
   AspectRatio,
   IconButton,
   ModalOverflow,
+  CircularProgress,
+  Box,
 } from "@mui/joy";
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import api from "../../../services/api";
 
 export function AdopterPostsModal({ open, setOpen }) {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: "Primeiro dia de aula!",
-      image_url:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80",
-      content:
-        "Hoje foi o primeiro dia de aula adaptada. A integração com os novos colegas foi super tranquila e o desenvolvimento nas atividades lúdicas superou as expectativas!",
-      date: "2026-05-10T10:00:00.000Z",
-      likes: true,
-    },
-    {
-      id: 2,
-      title: "Oficina de Pintura",
-      image_url:
-        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80",
-      content:
-        "Passamos a tarde testando novas cores na oficina de artes. A atividade ajudou bastante na concentração e na expressão criativa através das tintas.",
-      date: "2026-05-15T14:30:00.000Z",
-      likes: false,
-    },
-    {
-      id: 3,
-      title: "Passeio no Parque",
-      image_url:
-        "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80",
-      content:
-        "Um dia perfeito de sol para correr ao ar livre, observar a natureza e interagir com outros grupos. O gasto de energia foi excelente para a rotina do sono.",
-      date: "2026-05-19T17:00:00.000Z",
-      likes: true,
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleLike = (postId) => {
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.id === postId ? { ...post, likes: post.likes + 1 } : post,
-      ),
-    );
-  };
+  const fetchPosts = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await api.get("/posts/timeline");
+      console.log(response);
+
+      setPosts(response.data.data || []);
+    } catch (error) {
+      console.error("Erro ao buscar postagens:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      (async () => {
+        await fetchPosts();
+      })();
+    }
+  }, [open, fetchPosts]);
 
   return (
-    <Modal open={open} onClose={() => setOpen(false)}>
-      <ModalOverflow>
-        <ModalDialog
-          minWidth={400}
-          maxWidth={600}
-          sx={{ borderRadius: "md", p: 3, my: 4 }}
-        >
-          <ModalClose />
-          <Typography level="h3" component="h2">
-            Mural de Postagens da Criança
-          </Typography>
-          <Typography level="body-sm">
-            Histórico de atividades, rotinas e momentos compartilhados.
-          </Typography>
+    <>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <ModalOverflow>
+          <ModalDialog
+            minWidth={450}
+            maxWidth={800}
+            sx={{ borderRadius: "md", p: 3, my: 4, width: "100%" }}
+          >
+            <ModalClose />
 
-          <Divider sx={{ my: 2 }} />
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              justifyContent="space-between"
+              alignItems={{ xs: "flex-start", sm: "center" }}
+              spacing={2}
+              sx={{ mb: 1, pr: 4 }}
+            >
+              <Box>
+                <Typography level="h3" component="h2">
+                  Mural de Postagens da Criança
+                </Typography>
+                <Typography level="body-sm">
+                  Histórico de atividades, rotinas e momentos compartilhados.
+                </Typography>
+              </Box>
+            </Stack>
 
-          <Stack spacing={3}>
-            {posts.length === 0 ? (
-              <Typography
-                level="body-md"
-                sx={{ textAlign: "center", color: "neutral.500", py: 2 }}
-              >
-                Nenhuma postagem encontrada.
-              </Typography>
+            <Divider sx={{ my: 2 }} />
+
+            {loading ? (
+              <Box sx={{ display: "flex", justifyContent: "center", py: 5 }}>
+                <CircularProgress size="lg" />
+              </Box>
             ) : (
-              posts.map((post) => (
-                <Card key={post.id} variant="outlined" sx={{ p: 2 }}>
-                  <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="flex-start"
-                    sx={{ mb: 1 }}
+              <Stack spacing={3}>
+                {posts.length === 0 ? (
+                  <Typography
+                    level="body-md"
+                    sx={{ textAlign: "center", color: "neutral.500", py: 4 }}
                   >
-                    <Typography level="title-lg">{post.title}</Typography>
-                    <Typography
-                      level="body-xs"
-                      sx={{ color: "neutral.500", pt: 0.5 }}
-                    >
-                      {new Date(post.date).toLocaleDateString("pt-BR")}
-                    </Typography>
-                  </Stack>
-
-                  {post.image_url && (
-                    <AspectRatio
-                      ratio="16/9"
-                      sx={{ borderRadius: "xs", mb: 1.5 }}
-                    >
-                      <img
-                        src={post.image_url}
-                        loading="lazy"
-                        alt={post.title}
-                        style={{ objectFit: "cover" }}
-                      />
-                    </AspectRatio>
-                  )}
-
-                  <Typography level="body-sm" sx={{ mb: 2 }}>
-                    {post.content}
+                    Nenhuma postagem encontrada.
                   </Typography>
+                ) : (
+                  posts.map((post) => (
+                    <Card key={post.id} variant="outlined" sx={{ p: 2 }}>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="flex-start"
+                        sx={{ mb: 1 }}
+                      >
+                        <Typography level="title-lg">{post.title}</Typography>
+                        <Typography
+                          level="body-xs"
+                          sx={{ color: "neutral.500", pt: 0.5 }}
+                        >
+                          {new Date(post.createdAt).toLocaleDateString("pt-BR")}
+                        </Typography>
+                      </Stack>
 
-                  <Divider />
+                      {post.photo_url && (
+                        <AspectRatio
+                          ratio="16/9"
+                          sx={{ borderRadius: "xs", mb: 1.5, maxHeight: 350 }}
+                        >
+                          <img
+                            src={post.photo_url}
+                            loading="lazy"
+                            alt={post.title}
+                            style={{ objectFit: "cover" }}
+                          />
+                        </AspectRatio>
+                      )}
 
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="flex-start"
-                    spacing={1}
-                    sx={{ mt: 1 }}
-                  >
-                    <IconButton
-                      variant="plain"
-                      color="danger"
-                      onClick={() => handleLike(post.id)}
-                      size="sm"
-                    >
-                      <Heart
-                        size={35}
-                        fill={post.likes ? "currentColor" : "none"}
-                      />
-                    </IconButton>
-                  </Stack>
-                </Card>
-              ))
+                      <Typography level="body-sm" sx={{ mb: 2 }}>
+                        {post.content}
+                      </Typography>
+
+                      <Divider />
+
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        spacing={1}
+                        sx={{ mt: 1 }}
+                      >
+                        <IconButton variant="plain" color="danger" size="sm">
+                          <Heart
+                            size={30}
+                            fill={post.isLiked ? "currentColor" : "none"}
+                          />
+                        </IconButton>
+                      </Stack>
+                    </Card>
+                  ))
+                )}
+              </Stack>
             )}
-          </Stack>
-        </ModalDialog>
-      </ModalOverflow>
-    </Modal>
+          </ModalDialog>
+        </ModalOverflow>
+      </Modal>
+    </>
   );
 }

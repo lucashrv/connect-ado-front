@@ -44,7 +44,7 @@ export function FAQ() {
             <div>
               <Typography level="h2">Central de Ajuda & FAQ</Typography>
               <Typography level="body-lg">
-                Tire suas dúvidas sobre o sistema connectAdo, transição para o
+                Tire suas dúvidas sobre o sistema ConnectAdo, transição para o
                 novo lar e fase final da adoção.
               </Typography>
             </div>

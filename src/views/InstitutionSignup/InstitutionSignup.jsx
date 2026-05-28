@@ -57,7 +57,6 @@ export default function InstitutionSignup() {
       alert("Instituição cadastrada com sucesso!");
       navigate("/institution");
     } catch (error) {
-      console.log("Erro ao cadastrar:", error.response.data);
       alert(error.response?.data?.message || "Erro ao realizar cadastro.");
     } finally {
       setLoading(false);

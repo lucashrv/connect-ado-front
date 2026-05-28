@@ -52,7 +52,6 @@ export function LinkAdopterModal({ open, setOpen }) {
   const handleLink = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(state);
 
     try {
       await api.patch("/institution/link-adopter", {

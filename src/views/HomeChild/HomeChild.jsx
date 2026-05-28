@@ -198,7 +198,7 @@ export default function HomeChild() {
         <ChildPersonalManualModal
           open={openPersonalManualModal}
           setOpen={setOpenPersonalManualModal}
-          childId={getId}
+          childId={getId()}
         />
         <AdopterPostsModal
           open={openAdopterPostsModal}

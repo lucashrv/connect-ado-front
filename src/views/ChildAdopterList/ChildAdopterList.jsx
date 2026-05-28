@@ -66,7 +66,6 @@ export default function ChildAdopterList() {
           },
           signal: abortControllerRef.current.signal,
         });
-        console.log(response);
 
         let newItems = response.data.data || [];
 
