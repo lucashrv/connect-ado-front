@@ -24,7 +24,6 @@ export function AdopterPostsModal({ open, setOpen }) {
     setLoading(true);
     try {
       const response = await api.get("/posts/timeline");
-      console.log(response);
 
       setPosts(response.data.data || []);
     } catch (error) {
